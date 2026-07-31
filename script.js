@@ -172,7 +172,7 @@ function renderRoomTabContent(room, isActive) {
                     <div class="room-avail">${availIcon} ${availText}</div>
                     <p>${escapeHtml(room.description || '')}</p>
                     <ul class="room-amenities">${amenities}</ul>
-                    <a href="#contact" class="room-book-btn" onclick="prefill()">Book This Room →</a>
+                    <button type="button" class="room-book-btn" onclick="openBookingModal('${room.id}', '${escapeHtml(room.name)}', '${escapeHtml(activeHostelName)}', ${room.price})">Book This Room →</button>
                 </div>
             </div>
         </div>

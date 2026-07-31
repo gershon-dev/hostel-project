@@ -135,10 +135,36 @@
     <p>© 2025 <span>UEW Campus Hostels</span> · University of Education, Winneba · All Rights Reserved</p>
 </footer>
 
+<!-- ══════════════════════════════════════════════════════
+     BOOKING / PAYMENT MODAL — opened from "Book This Room →"
+     Collects student details, then hands off to Paystack
+     Mobile Money checkout via the initialize-payment function.
+     ══════════════════════════════════════════════════════ -->
+<div id="booking-modal" class="booking-modal-overlay">
+    <div class="booking-modal">
+        <button type="button" class="panel-close" onclick="closeBookingModal()">✕</button>
+        <p class="panel-hostel-label" id="booking-modal-room">Room</p>
+        <div class="booking-modal-price" id="booking-modal-price">GH₵ 0</div>
+
+        <form id="booking-form">
+            <div class="form-row">
+                <div class="form-group"><label for="bk-fname">First Name</label><input type="text" id="bk-fname" required></div>
+                <div class="form-group"><label for="bk-lname">Last Name</label><input type="text" id="bk-lname" required></div>
+            </div>
+            <div class="form-group"><label for="bk-email">Email Address</label><input type="email" id="bk-email" required></div>
+            <div class="form-group"><label for="bk-phone">Mobile Money Number</label><input type="tel" id="bk-phone" placeholder="+233 XX XXX XXXX" required></div>
+            <p class="booking-note">You'll be redirected to Paystack to complete payment via Mobile Money (MTN, Vodafone Cash, or AirtelTigo).</p>
+            <p class="booking-error" id="booking-error"></p>
+            <button type="submit" class="form-submit" id="booking-pay-btn">Pay with Mobile Money →</button>
+        </form>
+    </div>
+</div>
+
 
 <!-- Supabase client library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-client.js"></script>
 <script src="script.js"></script>
+<script src="booking.js"></script>
 </body>
 </html>
