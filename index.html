@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UEW Campus Hostels — Find Your Home Away From Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     </head>
 <body>
 
@@ -14,6 +14,9 @@
     <nav id="main-nav">
         <a href="#hostels">Hostels</a>
         <a href="#why">Why Us</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
         <a href="#contact" class="nav-cta">Book Now</a>
     </nav>
@@ -94,6 +97,98 @@
     </div>
 </section>
 
+<!-- ABOUT -->
+<section class="section" id="about">
+    <div class="section-inner">
+        <div class="about-wrap">
+            <div class="about-text fade-in">
+                <p class="section-eyebrow">About Us</p>
+                <h2 class="section-title" style="text-align:left">Who We Are</h2>
+                <div class="divider" style="margin-left:0"></div>
+                <p>UEW Campus Hostels (operating online as <strong>HostelFinder</strong>) is a student accommodation booking platform serving students of the University of Education, Winneba. We work directly with a small number of trusted, on-campus and near-campus hostel operators — including Guest Hall, SSNIT Hostel, and Finess Hostel — to make finding and securing a bed space simple, transparent, and stress-free.</p>
+                <p>Our platform lets you browse real hostels, compare room types and prices, and book your space online with secure Mobile Money payment through Paystack — no more queuing, no more guesswork, no more missed rooms.</p>
+                <p>We are a Ghana-based student services initiative built by and for the UEW community, and we're committed to fair pricing, honest listings, and responsive support throughout your stay.</p>
+            </div>
+            <div class="about-stats fade-in">
+                <div class="about-stat"><div class="stat-number">3+</div><div class="stat-label">Partner Hostels</div></div>
+                <div class="about-stat"><div class="stat-number">500+</div><div class="stat-label">Bed Spaces Managed</div></div>
+                <div class="about-stat"><div class="stat-number">24/7</div><div class="stat-label">Support Response</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section why-section" id="testimonials">
+    <div class="section-inner">
+        <div class="section-header fade-in">
+            <p class="section-eyebrow">Customer Feedback</p>
+            <h2 class="section-title">What Students Are Saying</h2>
+            <div class="divider"></div>
+            <p class="section-desc">Real feedback from students who booked their hostel accommodation through our platform.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card fade-in">
+                <div class="why-icon">⭐⭐⭐⭐⭐</div>
+                <p class="why-text" style="margin-bottom:14px">"Booking was so much easier than queuing at the hostel office. I paid with Mobile Money and got my confirmation immediately."</p>
+                <h3 class="why-title" style="font-size:15px">— Abena O., Level 200</h3>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon">⭐⭐⭐⭐⭐</div>
+                <p class="why-text" style="margin-bottom:14px">"I could actually see photos of the room before booking, which saved me from wasting a trip to campus. Very transparent process."</p>
+                <h3 class="why-title" style="font-size:15px">— Kwame A., Level 300</h3>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon">⭐⭐⭐⭐</div>
+                <p class="why-text" style="margin-bottom:14px">"Good experience overall. Support responded quickly when I had a question about my preferred room type."</p>
+                <h3 class="why-title" style="font-size:15px">— Efua D., Level 100</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+    <div class="section-inner">
+        <div class="section-header fade-in">
+            <p class="section-eyebrow">Frequently Asked Questions</p>
+            <h2 class="section-title">Got Questions?</h2>
+            <div class="divider"></div>
+            <p class="section-desc">Everything you need to know about booking and paying for your hostel accommodation.</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item fade-in">
+                <button class="faq-question" onclick="toggleFaq(this)">How do I book a bed space? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Browse the hostels listed on our Hostels section, click on a hostel to view its available room types, then click "Book This Room" on the option you want. Fill in your details and complete payment via Mobile Money through Paystack to confirm your booking.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question" onclick="toggleFaq(this)">What payment methods do you accept? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>We accept Mobile Money payments (MTN Mobile Money, Vodafone Cash, and AirtelTigo Money) processed securely through Paystack. We do not accept cash payments through the platform.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question" onclick="toggleFaq(this)">Is my payment secure? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Yes. All payments are processed by Paystack, a licensed and PCI-DSS compliant payment processor. We never see or store your Mobile Money PIN or full payment credentials.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question" onclick="toggleFaq(this)">What is your refund policy? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p><strong>All bookings are final and non-refundable.</strong> Once a payment is successfully made for a room, that room is reserved for you and no refund, credit, or exchange will be issued for cancellations, no-shows, or change of mind. Please see our <a href="terms.html">Terms of Service</a> for full details before booking.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question" onclick="toggleFaq(this)">How do I know if a room is still available? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Each room type displays a live availability status — green means spaces are available, yellow means limited spaces remain, and red means the room is fully booked. Availability updates as bookings come in.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question" onclick="toggleFaq(this)">What happens after I pay? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Once Paystack confirms your payment, your booking is recorded and secured against that room. You'll be able to move in on the agreed date coordinated with the hostel management — reach out to us via the Contact section if you need to confirm move-in details.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question" onclick="toggleFaq(this)">Can I change my room after booking? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Room changes are handled on a case-by-case basis and depend on availability. Since bookings are non-refundable, contact us as soon as possible if you need to discuss a change, and we'll do our best to help — though a swap is not guaranteed.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- CONTACT -->
 <section class="section" id="contact">
     <div class="section-inner">
@@ -103,7 +198,7 @@
                 <h2>Book Your Bed Space Today</h2>
                 <p>Ready to secure your accommodation? Fill in your details and our team will get back to you within 24 hours.</p>
                 <div class="contact-detail"><div class="contact-detail-icon">📍</div><div class="contact-detail-text"><strong>Location</strong><span>University of Education, Winneba, Central Region, Ghana</span></div></div>
-                <div class="contact-detail"><div class="contact-detail-icon">📞</div><div class="contact-detail-text"><strong>Phone</strong><span>+233 XXX XXX XXXX</span></div></div>
+                <div class="contact-detail"><div class="contact-detail-icon">📞</div><div class="contact-detail-text"><strong>Phone</strong><span>+233 5456566884</span></div></div>
                 <div class="contact-detail"><div class="contact-detail-icon">✉️</div><div class="contact-detail-text"><strong>Email</strong><span>hostels@uew.edu.gh</span></div></div>
             </div>
             <div class="contact-form fade-in">
@@ -133,6 +228,7 @@
 
 <footer>
     <p>© 2025 <span>UEW Campus Hostels</span> · University of Education, Winneba · All Rights Reserved</p>
+    <p class="footer-links"><a href="#about">About</a> · <a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · <a href="#faq">FAQ</a></p>
 </footer>
 
 <!-- ══════════════════════════════════════════════════════

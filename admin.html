@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — UEW Campus Hostels</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/admin.css">
+</head>
+<body>
+
+<!-- ══════════════ LOGIN SCREEN ══════════════ -->
+<div id="login-screen" class="login-screen">
+    <form id="login-form" class="login-card">
+        <div class="login-badge">U</div>
+        <h1>Admin Sign In</h1>
+        <p class="login-sub">UEW Campus Hostels — staff access only</p>
+        <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required autocomplete="username">
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required autocomplete="current-password">
+        </div>
+        <p id="login-error" class="login-error"></p>
+        <button type="submit" class="btn-primary full-width">Sign In</button>
+    </form>
+</div>
+
+<!-- ══════════════ DASHBOARD ══════════════ -->
+<div id="dashboard" class="dashboard hidden">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand"><div class="logo-badge">U</div><span>UEW Hostels<br><small>Admin</small></span></div>
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-view="hostels">🏠 Hostels</button>
+            <button class="nav-item" data-view="rooms">🛏 Room Types</button>
+            <button class="nav-item" data-view="enquiries">✉️ Enquiries <span id="enquiry-count" class="count-pill hidden">0</span></button>
+        </nav>
+        <div class="sidebar-footer">
+            <span id="admin-email" class="admin-email"></span>
+            <button id="logout-btn" class="btn-ghost small">Sign Out</button>
+        </div>
+    </aside>
+
+    <main class="content">
+
+        <!-- ── HOSTELS VIEW ── -->
+        <section id="view-hostels" class="view">
+            <div class="view-header">
+                <h2>Hostels</h2>
+                <button class="btn-primary" onclick="openHostelForm()">+ Add Hostel</button>
+            </div>
+            <div id="hostels-table-wrap" class="table-wrap">
+                <p class="loading-msg">Loading…</p>
+            </div>
+        </section>
+
+        <!-- ── ROOM TYPES VIEW ── -->
+        <section id="view-rooms" class="view hidden">
+            <div class="view-header">
+                <h2>Room Types</h2>
+                <div class="view-header-actions">
+                    <select id="room-hostel-filter"></select>
+                    <button class="btn-primary" onclick="openRoomForm()">+ Add Room Type</button>
+                </div>
+            </div>
+            <div id="rooms-table-wrap" class="table-wrap">
+                <p class="loading-msg">Loading…</p>
+            </div>
+        </section>
+
+        <!-- ── ENQUIRIES VIEW ── -->
+        <section id="view-enquiries" class="view hidden">
+            <div class="view-header">
+                <h2>Enquiries</h2>
+            </div>
+            <div id="enquiries-table-wrap" class="table-wrap">
+                <p class="loading-msg">Loading…</p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- ══════════════ HOSTEL FORM MODAL ══════════════ -->
+<div id="hostel-modal" class="modal-backdrop hidden">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="hostel-modal-title">Add Hostel</h3>
+            <button class="modal-close" onclick="closeModal('hostel-modal')">✕</button>
+        </div>
+        <form id="hostel-form" class="modal-body">
+            <input type="hidden" id="hostel-id">
+            <div class="form-row">
+                <div class="form-group"><label>Name</label><input type="text" id="hostel-name" required></div>
+                <div class="form-group"><label>Slug</label><input type="text" id="hostel-slug" required placeholder="e.g. guest-hall"></div>
+            </div>
+            <div class="form-group"><label>Type Label</label><input type="text" id="hostel-type-label" placeholder="e.g. On-Campus · Mixed"></div>
+            <div class="form-group"><label>Description</label><textarea id="hostel-description"></textarea></div>
+            <div class="form-row">
+                <div class="form-group"><label>Badge Text</label><input type="text" id="hostel-badge-text" value="Available"></div>
+                <div class="form-group">
+                    <label>Badge Style</label>
+                    <select id="hostel-badge-style"><option value="default">Default</option><option value="limited">Limited (orange)</option></select>
+                </div>
+            </div>
+            <div class="form-group"><label>Features (one per line, emoji optional)</label><textarea id="hostel-features" placeholder="🛏 Single & Shared&#10;🔒 24/7 Security"></textarea></div>
+            <div class="form-group">
+                <label>Main Image</label>
+                <input type="file" id="hostel-image-file" accept="image/*">
+                <img id="hostel-image-preview" class="img-preview hidden">
+                <input type="hidden" id="hostel-image-url">
+            </div>
+            <div class="form-group"><label>Sort Order</label><input type="number" id="hostel-sort-order" value="0"></div>
+            <p id="hostel-form-error" class="form-error"></p>
+            <div class="modal-actions">
+                <button type="button" class="btn-ghost" onclick="closeModal('hostel-modal')">Cancel</button>
+                <button type="submit" class="btn-primary" id="hostel-save-btn">Save Hostel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ══════════════ ROOM TYPE FORM MODAL ══════════════ -->
+<div id="room-modal" class="modal-backdrop hidden">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="room-modal-title">Add Room Type</h3>
+            <button class="modal-close" onclick="closeModal('room-modal')">✕</button>
+        </div>
+        <form id="room-form" class="modal-body">
+            <input type="hidden" id="room-id">
+            <div class="form-group"><label>Hostel</label><select id="room-hostel-id" required></select></div>
+            <div class="form-row">
+                <div class="form-group"><label>Room Name</label><input type="text" id="room-name" required placeholder="e.g. Single Room"></div>
+                <div class="form-group"><label>Capacity</label><input type="number" id="room-capacity" required min="1" value="1"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>Price (GH₵)</label><input type="number" id="room-price" required step="0.01"></div>
+                <div class="form-group"><label>Price Period</label><input type="text" id="room-price-period" value="/ semester"></div>
+                <div class="form-group">
+                    <label>Availability</label>
+                    <select id="room-availability">
+                        <option value="available">Available</option>
+                        <option value="limited">Limited</option>
+                        <option value="full">Full</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group"><label>Description</label><textarea id="room-description"></textarea></div>
+            <div class="form-group"><label>Amenities (one per line)</label><textarea id="room-amenities" placeholder="Private room&#10;Study desk & chair"></textarea></div>
+            <div class="form-group">
+                <label>Main Image</label>
+                <input type="file" id="room-image-file" accept="image/*">
+                <img id="room-image-preview" class="img-preview hidden">
+                <input type="hidden" id="room-image-url">
+            </div>
+            <div class="form-group">
+                <label>Thumbnail Images (select multiple)</label>
+                <input type="file" id="room-thumbs-file" accept="image/*" multiple>
+                <div id="room-thumbs-preview" class="thumbs-preview"></div>
+                <input type="hidden" id="room-thumbs-urls" value="[]">
+            </div>
+            <div class="form-group">
+                <label>Video (optional)</label>
+                <input type="file" id="room-video-file" accept="video/*">
+                <span id="room-video-name" class="file-name"></span>
+                <input type="hidden" id="room-video-url">
+            </div>
+            <div class="form-group"><label>Sort Order</label><input type="number" id="room-sort-order" value="0"></div>
+            <p id="room-form-error" class="form-error"></p>
+            <div class="modal-actions">
+                <button type="button" class="btn-ghost" onclick="closeModal('room-modal')">Cancel</button>
+                <button type="submit" class="btn-primary" id="room-save-btn">Save Room Type</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
